@@ -5,6 +5,8 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to "/prototypes/#{@comment.prototype.id}"
     else
+      @prototype = @comment.prototype
+      @comments = @prototype.comment.includes(:user)
       render "prototypes/show", status: :unprocessable_entity
     end
   end
