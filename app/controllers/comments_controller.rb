@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
 
   def create
-    @comment = Comment.build(comment_params)
+    @comment = Comment.new(comment_params)
     if @comment.save
-      redirect_to prototype_path(@prototype)
+      redirect_to "/prototypes/#{@comment.prototype.id}"
     else
       render "prototypes/show", status: :unprocessable_entity
     end
